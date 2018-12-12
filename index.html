@@ -1,0 +1,161 @@
+<html>
+  <head>
+    <!-- materialize -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    
+    <script src ="js/p5.min.js"> </script>
+    <script src = "js/vehicle_v4.js"></script>
+    <script src = "js/environment_v2.js"></script>
+    <script src = "js/brain_v3.js"></script>
+    <script src = "js/population_v2.js"></script>
+    <script src = "js/evolution_v2.js"></script>
+    <script src = "js/genePool_v2.js"></script>
+    <script src = "js/genome_v2.js"></script>
+    <script src = "js/simulation.js"></script>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <style>
+        body {
+          background-color: rgb(230, 230, 230);
+        }
+
+        #simulation-canvas {
+          display:inline-block;
+          margin: 0 auto;
+        }
+  
+        #control-panel {
+          padding: 15px 20px;
+          height: 100%;
+          z-index: -100;
+        }
+  
+        .font-1 * {
+          color: rgba(255, 255, 255, 0.9) !important;
+        }
+  
+        .select-dropdown * {
+          color: rgba(50, 50, 50, 0.8) !important;
+        }
+      </style>
+  </head>
+
+  <body>
+      <div>
+          <div class="row">
+              <div id="simulation-canvas" class="col s9">
+              </div>
+              
+              <div id="control-panel" class="col s3 teal darken-3">
+                
+                <div style="margin-bottom: 20px;">
+                  <!---<a id="setupBtn" class="waves-effect waves-light btn-small" href="javascript:void(0);" 
+                    onclick="setupFromUI();return false">Setup</a> -->
+                  <a id="playBtn" class="waves-effect waves-light btn-small" href="javascript:void(0);" 
+                    onclick="setupFromUI();return false"><i class="material-icons left">play_arrow</i>Play</a>
+                  <a id="playBtn" class="waves-effect waves-light btn-small" href="javascript:void(0);" 
+                    onclick="stopSimulation();return false"><i class="material-icons left"></i>Pause / Resume</a>
+                </div>
+  
+                <form action="#" class="font-1">
+
+                    <div class="input-field">
+                        <select id="module">
+                          <!-- <option value="" disabled selected>Choose your option</option> -->
+                          <option value="FOOD_FINDERS">Food finders</option>
+                          <option value="CAT_MOUSE" selected="selected">Cat mouse</option>
+                          <option value="EXPLORATION">Exploration</option>
+                          <option value="ATTRACTION_MODULE">Attraction</option>
+                          <option value="AGGRESSION_MODULE">Aggression</option>
+                          <option value="AVOID_MODULE">Avoid</option>
+                        </select>
+                        <label>Module</label>
+                      </div>
+
+                  <!--
+                    <div>
+                        <label>Model speed</label>
+                        <p class="range-field">
+                          <input type="range" id="speed" min="0.25" max="4" step="0.01" />
+                        </p>
+                    </div> -->
+  
+                  <div>
+                        <label>Population size</label>
+                        <p class="range-field">
+                          <input type="range" id="size" min="5" max="30" step="1" />
+                        </p>
+                  </div>
+
+                  <label>Evolution activated?</label>
+                  <div class="switch" style="margin-bottom: 20px;">
+                      <label>
+                        Off
+                        <input type="checkbox" id="evolutionActivated">
+                        <span class="lever"></span>
+                        On
+                      </label>
+                  </div>
+  
+                  <div>
+                      <label>Generation lifespan (in seconds)</label>
+                      <p class="range-field">
+                        <input type="range" id="lifespan" min="2" max="20" step="1" />
+                      </p>
+                  </div>
+  
+                  <div class="input-field">
+                      <select id="mutationRate">
+                        <!-- <option value="" disabled selected>Choose your option</option> -->
+                        <option value="DISABLED">disabled</option>
+                        <option value="SLOW" selected="selected">slow</option>
+                        <option value="MEDIUM">medium</option>
+                        <option value="FAST">fast</option>
+                      </select>
+                      <label>Mutation rate</label>
+                    </div>
+  
+                  <div>
+                      <label>Champions copied per generation</label>
+                      <p class="range-field">
+                        <input type="range" id="numberCopied" min="2" max="5" step="1" />
+                      </p>
+                  </div>
+                  
+                  <label>Show neural circuits?</label>
+                  <div class="switch" style="margin-bottom: 10px;">
+                      <label>
+                        Off
+                        <input type="checkbox" id="showNC">
+                        <span class="lever"></span>
+                        On
+                      </label>
+                  </div>
+  
+                  <label>Show signal areas?</label>
+                  <div class="switch" style="margin-bottom: 10px;">
+                      <label>
+                        Off
+                        <input type="checkbox" id="showFields">
+                        <span class="lever"></span>
+                        On
+                      </label>
+                  </div>
+                  
+                  <div>
+                      <label>Environment noise</label>
+                      <p class="range-field">
+                        <input type="range" id="envNoise" min="0" max="1" step="0.01" />
+                      </p>
+                    </div>
+  
+                </form>
+              </div>
+          </div>
+        </div>
+  
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
+</html>
